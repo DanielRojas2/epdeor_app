@@ -1,0 +1,24 @@
+.bg-primary-custom { background-color: #680202 !important; }
+.text-primary-custom { color: #680202 !important; }
+.text-secondary-a-custom { color: #ffcc00 !important; }
+.text-secondary-b-custom { color: #333399 !important; }
+.text-secondary-c-custom { color: #CC0000 !important; }
+.bg-secondary-b-custom { background-color: #333399 !important; }
+.bg-secondary-c-custom { background-color: #CC0000 !important; }
+
+.nav-link { transition: color 0.3s; }
+.nav-link:hover { color: #ffcc00 !important; }
+
+.nav-link.active { color: #ffcc00 !important; font-weight: 700; }
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #680202;
+}
+.mobile-menu.show {
+    display: flex;
+}
