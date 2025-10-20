@@ -6,12 +6,14 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'GothamLight';
     src: url('/fonts/GothamLight.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'GothamRegular';
     src: url('/fonts/GothamRegular.otf') format('opentype');
@@ -23,13 +25,18 @@ h1 {
     font-family: 'GothamBlack';
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'GothamRegular';
 }
 
 body {
     font-family: 'GothamLight';
     min-height: 100vh;
+    background-color: #c4c4c4;
 }
 
 body::-webkit-scrollbar {

@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
 
     const iniciarSesion = async (username, password) => {
         try {
-            const res = await api.post("/iniciar-sesion/", { username, password });
+            const res = await api.post("/usuarios/iniciar-sesion/", { username, password });
             const data = res.data;
 
             localStorage.setItem("access", data.access);
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
         if (!refresh) return logout();
 
         try {
-            const res = await api.post("/refrescar-token/", { refresh });
+            const res = await api.post("/usuarios/refrescar-token/", { refresh });
             localStorage.setItem("access", res.data.access);
         } catch (error) {
             logout();

@@ -31,14 +31,14 @@ function NavbarComponent() {
                         <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
                             Usuarios
                         </Link>
-                        <Link to="/archivos" className={`nav-link text-white ${isActive('/archivos')}`}>
-                            Archivos
+                        <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
+                            Almacenes
                         </Link>
                         <Link to="/material" className={`nav-link text-white ${isActive('/material')}`}>
                             Material
                         </Link>
-                        <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
-                            Almacenes
+                        <Link to="/archivos" className={`nav-link text-white ${isActive('/archivos')}`}>
+                            Archivos
                         </Link>
                         <Link to="/solicitudes" className={`nav-link text-white ${isActive('/solicitudes')}`}>
                             Solicitudes
@@ -81,7 +81,7 @@ function NavbarComponent() {
                         <button onClick={cerrarSesion} className="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-secondary-b-custom text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-colors">
                             <span className="truncate">Cerrar sesión</span>
                         </button>
-                        <button className="sm:hidden flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-white/20">
+                        <button onClick={cerrarSesion} className="sm:hidden flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-white/20">
                             <span className="material-symbols-outlined">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
@@ -98,21 +98,21 @@ function NavbarComponent() {
                     <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
                         Usuarios
                     </Link>
-                    <Link to="/archivos" className={`nav-link text-white ${isActive('/archivos')}`}>
-                        Archivos
+                    <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
+                        Almacenes
                     </Link>
                     <Link to="/material" className={`nav-link text-white ${isActive('/material')}`}>
                         Material
                     </Link>
-                    <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
-                        Almacenes
+                    <Link to="/archivos" className={`nav-link text-white ${isActive('/archivos')}`}>
+                        Archivos
                     </Link>
                     <Link to="/solicitudes" className={`nav-link text-white ${isActive('/solicitudes')}`}>
                         Solicitudes
                     </Link>
                 </div>
 
-                <main className="flex-1 p-4 sm:p-6 lg:p-5">
+                <main className="flex-1 p-2 sm:p-2 lg:p-1" style={{ backgroundColor: '#b1c2dfff' }}>
                     <TabsComponent />
                 </main>
             </div>
