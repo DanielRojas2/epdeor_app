@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
 
     const iniciarSesion = async (username, password) => {
         try {
-            const res = await api.post("/usuarios/iniciar-sesion/", { username, password });
+            const res = await api.post("/api-usuarios/iniciar-sesion/", { username, password });
             const data = res.data;
 
             localStorage.setItem("access", data.access);

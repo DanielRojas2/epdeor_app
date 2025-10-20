@@ -19,7 +19,7 @@ function App() {
                     </ProtectedRoute>
                 } />
                 <Route path='/usuarios' element={
-                    <ProtectedRoute>
+                    <ProtectedRoute allowedRoles={["encargado de sistemas"]}>
                         <UsuariosPage />
                     </ProtectedRoute>
                 } />

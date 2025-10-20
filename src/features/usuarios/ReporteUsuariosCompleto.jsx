@@ -19,7 +19,7 @@ function ReporteUsuariosCompleto() {
     const { columns, data, pending, filters, setFilters, unidades, roles } = useReporteUsuarios();
 
     return (
-        <div className="w-full max-w-7xl mx-auto mt-6 bg-white dark:bg-gray-900 rounded-xl shadow p-5">
+        <div className="w-full mx-auto mt-6 bg-white dark:bg-gray-900 rounded-xl shadow p-5">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
                 <h2 className="text-2xl dark:text-gray-100">Usuarios</h2>

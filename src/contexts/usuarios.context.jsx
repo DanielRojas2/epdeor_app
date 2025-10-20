@@ -11,7 +11,7 @@ function UsuariosProviderWrapper({ children }){
 
     const getReporteUsuarios = async () => {
         try {
-            const response = await api.get('/usuarios/usuarios/');
+            const response = await api.get('/api-usuarios/usuarios/');
             const data = response.data;
             setReporteUsuarios(data);
             setError(false);

@@ -18,7 +18,7 @@ function TabsComponent() {
 
     return (
         <div className="w-full">
-            <div className="flex border-b dark:border-[#3b4754] border-gray-200 gap-4 overflow-x-auto" style={{ margin: '5px' }}>
+            <div className="flex border-b dark:border-[#3b4754] border-gray-200 gap-4 overflow-x-auto" style={{ margin: '5px', maxHeight: '55vh' }}>
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
@@ -34,7 +34,7 @@ function TabsComponent() {
                 ))}
             </div>
 
-            <div className="mt-4">
+            <div className="mt-1">
                 {tabs.map((tab) => (
                     <div key={tab.id} className={activeTab === tab.id ? "block" : "hidden"}>
                         {tab.content}

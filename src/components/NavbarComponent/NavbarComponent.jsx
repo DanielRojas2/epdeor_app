@@ -1,14 +1,16 @@
-import './NavbarComponent.css'
-import { useState, useEffect, useContext } from 'react'
-import logo from '../../assets/logos/epdeor_nobg.png'
-import { Link, useLocation } from 'react-router-dom'
-import TabsComponent from '../TabsComponent/TabsComponent'
-import { AuthContext } from '../../contexts/auth.context'
+import './NavbarComponent.css';
+import { useState, useEffect, useContext } from 'react';
+import logo from '../../assets/logos/epdeor_nobg.png';
+import { Link, useLocation } from 'react-router-dom';
+import TabsComponent from '../TabsComponent/TabsComponent';
+import { AuthContext } from '../../contexts/auth.context';
+import useProtegerRol from '../../hooks/useProtegerRol';
 
 function NavbarComponent() {
-    const [menuOpen, setMenuOpen] = useState(false)
-    const { cerrarSesion } = useContext(AuthContext)
-    const location = useLocation()
+    const [menuOpen, setMenuOpen] = useState(false);
+    const { cerrarSesion } = useContext(AuthContext);
+    const { rol } = useProtegerRol();
+    const location = useLocation();
 
     useEffect(() => {
         const handleResize = () => {
@@ -28,9 +30,11 @@ function NavbarComponent() {
                         <Link to="/" className={`nav-link text-white ${isActive('/')}`}>
                             Inicio
                         </Link>
-                        <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
-                            Usuarios
-                        </Link>
+                        {(rol === "encargado de sistemas") && (
+                            <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
+                                Usuarios
+                            </Link>
+                        )}
                         <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
                             Almacenes
                         </Link>
@@ -95,9 +99,11 @@ function NavbarComponent() {
                     <Link to="/" className={`nav-link text-white ${isActive('/')}`}>
                         Inicio
                     </Link>
-                    <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
-                        Usuarios
-                    </Link>
+                    {(rol === "encargado de sistemas") && (
+                            <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
+                                Usuarios
+                            </Link>
+                        )}
                     <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
                         Almacenes
                     </Link>
