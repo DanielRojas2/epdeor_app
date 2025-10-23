@@ -36,7 +36,6 @@ h6 {
 body {
     font-family: 'GothamLight';
     min-height: 100vh;
-    background-color: #c4c4c4;
 }
 
 body::-webkit-scrollbar {

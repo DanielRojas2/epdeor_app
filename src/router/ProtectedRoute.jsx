@@ -14,7 +14,7 @@ function ProtectedRoute({ children, allowedRoles = [] }) {
     }
 
     if (allowedRoles.length > 0) {
-        const userRole = user?.cargo_detalle?.rol.toLowerCase();
+        const userRole = user?.cargo_detalle?.rol_nombre.toLowerCase();
 
         if(!allowedRoles.map(r => r.toLowerCase()).includes(userRole)) {
             return (

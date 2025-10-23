@@ -1,5 +1,8 @@
+import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { useReporteUsuarios } from "../../hooks/useReporteUsuarios";
+import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import FormularioUsuario from "./FormularioUsuario";
 
 const paginationComponentOptions = {
     rowsPerPageText: 'Filas por página',
@@ -16,16 +19,30 @@ const CustomLoader = () => (
 );
 
 function ReporteUsuariosCompleto() {
-    const { columns, data, pending, filters, setFilters, unidades, roles } = useReporteUsuarios();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [usuarioEditar, setUsuarioEditar] = useState(null);
+    
+    const handleEditUsuario = (usuario) => {
+        setUsuarioEditar(usuario);
+        setIsModalOpen(true);
+    };
+
+    const { columns, data, pending, filters, setFilters, unidades, roles } = useReporteUsuarios(handleEditUsuario);
+    
+    const handleCloseModal = () => {
+        setUsuarioEditar(null);
+        setIsModalOpen(false);
+    };
 
     return (
-        <div className="w-full mx-auto mt-6 bg-white dark:bg-gray-900 rounded-xl shadow p-5">
+        <div className="w-full mx-auto mt-2 bg-white dark:bg-gray-900 rounded-xl shadow p-4">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
                 <h2 className="text-2xl dark:text-gray-100">Usuarios</h2>
                 <button
                     className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
                     type="button"
+                    onClick={() => setIsModalOpen(true)}
                 >
                     Nuevo usuario
                 </button>
@@ -99,12 +116,22 @@ function ReporteUsuariosCompleto() {
                         },
                         rows: {
                             style: {
-                                minHeight: "50px",
+                                height: "3rem",
                             },
                         },
                     }}
                 />
             </div>
+            <ModalComponent
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title={usuarioEditar ? "Editar Usuario" : "Registrar Nuevo Usuario"}
+            >
+                <FormularioUsuario
+                    usuarioEditar={usuarioEditar}
+                    onSuccess={handleCloseModal}
+                />
+            </ModalComponent>
         </div>
     );
 }

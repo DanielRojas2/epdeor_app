@@ -1,4 +1,7 @@
-import ReporteUsuariosCompleto from "../../features/usuarios/ReporteUsuariosCompleto"
+import ReporteUsuariosCompleto from "../../features/usuarios/ReporteUsuariosCompleto";
+import ReporteAlmacenes from "../../features/almacenes/ReporteAlmacenes";
+import PresentacionMaterial from "../../features/material/PresentacionMaterial";
+import ReporteGeneralMaterial from "../../features/material/ReporteGeneralMaterial";
 
 export const tabsConfig = {
     "/usuarios": [
@@ -39,12 +42,19 @@ export const tabsConfig = {
         {
             id: "material",
             label: "Material",
-            content: <div>Contenido de Material</div>
+            content: <PresentacionMaterial />
+        },
+        {
+            id: "general",
+            label: "General",
+            content: <ReporteGeneralMaterial />,
+            roles: ['encargado activos fijos y almacen']
         },
         {
             id: "inventario",
             label: "Inventario",
-            content: <div>Contenido de Inventario</div>
+            content: <div>Contenido de Inventario</div>,
+            roles: ['encargado activos fijos y almacen']
         },
         {
             id: "solicitudes",
@@ -56,7 +66,7 @@ export const tabsConfig = {
         {
             id: "almacen",
             label: "Almacen",
-            content: <div>Contenido de Almacenes</div>
+            content: <ReporteAlmacenes />
         },
         {
             id: "atender",

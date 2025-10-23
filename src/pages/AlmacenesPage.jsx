@@ -1,8 +1,11 @@
 import NavbarComponent from "../components/NavbarComponent/NavbarComponent"
+import { AlmacenesProvider } from "../contexts/almacenes.context"
 
 function AlmacenesPage() {
     return (
-        <NavbarComponent />
+        <AlmacenesProvider>
+            <NavbarComponent />
+        </AlmacenesProvider>
     )
 }
 

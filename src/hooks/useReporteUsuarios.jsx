@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { UsuariosContext } from "../contexts/usuarios.context";
 
-export function useReporteUsuarios() {
-    const { reporteUsuarios, getReporteUsuarios } = useContext(UsuariosContext);
+export function useReporteUsuarios(onEditUsuario) {
+    const { reporteUsuarios, getReporteUsuarios, cambiarEstado } = useContext(UsuariosContext);
     const [data, setData] = useState([]);
     const [pending, setPending] = useState(true);
     const [filters, setFilters] = useState({
@@ -25,18 +25,24 @@ export function useReporteUsuarios() {
                         nombre_completo: `${usuario.nombre} ${usuario.apellido_paterno}`,
                         username: usuario.username,
                         email: usuario.email,
-                        estado: usuario.usuario_activo ? 'activo' : 'Inactivo',
+                        estado: usuario.usuario_activo ? 'Activo' : 'Inactivo',
                         alta: usuario.alta,
                         baja: usuario.baja,
-                        unidad: usuario.cargo_detalle ? usuario.cargo_detalle.unidad : 'administrador',
-                        rol: usuario.cargo_detalle ? usuario.cargo_detalle.rol : 'administrador'
+                        unidad: usuario.cargo_detalle ? usuario.cargo_detalle.unidad_nombre : 'administrador',
+                        rol: usuario.cargo_detalle ? usuario.cargo_detalle.rol_nombre : 'administrador',
+                        raw: usuario
                     }))
                 );
             }
             setPending(false);
-        }, 1000)
+        }, 500)
         return () => clearTimeout(timeout);
     }, [reporteUsuarios]);
+
+    const handleCambiarEstado = async (usuario) => {
+        await cambiarEstado(usuario);
+        getReporteUsuarios();
+    };
 
     const columns = [
         {
@@ -82,21 +88,50 @@ export function useReporteUsuarios() {
         {
             name: 'Acciones',
             cell: row => (
-                <div className="flex gap-2">
-                    <button className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors" title="Editar Usuario">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                <div className="flex gap-2 items-center justify-center">
+                    <button
+                        className="p-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors"
+                        title="Editar Usuario"
+                        onClick={() => onEditUsuario(row.raw)}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-4 h-4"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                            />
                         </svg>
                     </button>
+
                     <button
-                        className={`p-2 rounded-md transition-colors ${
-                            row.estado === 'activo'
+                        className={`p-1.5 rounded-md transition-colors ${row.estado === 'Activo'
                                 ? 'bg-red-500 hover:bg-red-600 text-white'
                                 : 'bg-green-500 hover:bg-green-600 text-white'
-                        }`}
-                        title={row.estado === 'activo' ? 'Dar de baja' : 'Dar de alta'}
+                            }`}
+                        title={row.estado === 'Activo' ? 'Desactivar Usuario' : 'Activar Usuario'}
+                        onClick={() => handleCambiarEstado(row.raw)}
                     >
-                        {row.estado === 'activo' ? 'Dar de baja' : 'Dar de alta'}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-4 h-4"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
+                            />
+                        </svg>
                     </button>
                 </div>
             ),

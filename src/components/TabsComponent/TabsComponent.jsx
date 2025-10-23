@@ -1,31 +1,45 @@
-import { useState, useEffect } from "react"
-import { useLocation } from "react-router-dom"
-import { tabsConfig } from "./tabs.config"
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { tabsConfig } from "./tabs.config";
+import useProtegerRol from "../../hooks/useProtegerRol";
 
 function TabsComponent() {
-    const location = useLocation()
-    const [activeTab, setActiveTab] = useState(null)
-    const [tabs, setTabs] = useState([])
+    const location = useLocation();
+    const { rol } = useProtegerRol();
+    const [activeTab, setActiveTab] = useState(null);
+    const [tabs, setTabs] = useState([]);
 
     useEffect(() => {
-        const path = location.pathname
-        const newTabs = tabsConfig[path] || []
-        setTabs(newTabs)
-        setActiveTab(newTabs[0]?.id || null)
-    }, [location.pathname])
+        const path = location.pathname;
+        const newTabs = tabsConfig[path] || [];
 
-    if (!tabs.length) return null
+        const filteredTabs = newTabs.filter(
+            (tab) =>
+                !tab.roles || tab.roles.some(
+                    (r) => r.toLowerCase() === rol.toLowerCase()
+                )
+        );
+
+        setTabs(filteredTabs);
+        setActiveTab(filteredTabs[0]?.id || null);
+    }, [location.pathname, rol]);
+
+    if (!tabs.length) return null;
 
     return (
         <div className="w-full">
-            <div className="flex border-b dark:border-[#3b4754] border-gray-200 gap-4 overflow-x-auto" style={{ margin: '5px', maxHeight: '55vh' }}>
+            <div
+                className="flex border-b dark:border-[#3b4754] border-gray-200 gap-4 overflow-x-auto"
+                style={{ margin: "5px", maxHeight: "55vh" }}
+            >
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
                         className={`flex flex-col items-center justify-center pb-3 pt-2 text-sm font-bold tracking-[0.015em] font-display transition-colors
-                            ${activeTab === tab.id
-                                ? "border-b-2 border-b-primary text-[#680202]"
-                                : "border-b-2 border-b-transparent dark:text-[#0e2d56] hover:text-primary dark:hover:text-[#333399]"
+                            ${
+                                activeTab === tab.id
+                                    ? "border-b-2 border-b-primary text-[#680202]"
+                                    : "border-b-2 border-b-transparent dark:text-[#0e2d56] hover:text-primary dark:hover:text-[#333399]"
                             }`}
                         onClick={() => setActiveTab(tab.id)}
                     >
@@ -36,13 +50,16 @@ function TabsComponent() {
 
             <div className="mt-1">
                 {tabs.map((tab) => (
-                    <div key={tab.id} className={activeTab === tab.id ? "block" : "hidden"}>
+                    <div
+                        key={tab.id}
+                        className={activeTab === tab.id ? "block" : "hidden"}
+                    >
                         {tab.content}
                     </div>
                 ))}
             </div>
         </div>
-    )
+    );
 }
 
-export default TabsComponent
+export default TabsComponent;

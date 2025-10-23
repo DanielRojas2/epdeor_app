@@ -35,9 +35,11 @@ function NavbarComponent() {
                                 Usuarios
                             </Link>
                         )}
-                        <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
-                            Almacenes
-                        </Link>
+                        {(rol === "encargado archivos y ujier" || rol === "encargado activos fijos y almacen") && (
+                            <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
+                                Almacenes
+                            </Link>
+                        )}
                         <Link to="/material" className={`nav-link text-white ${isActive('/material')}`}>
                             Material
                         </Link>
@@ -100,13 +102,15 @@ function NavbarComponent() {
                         Inicio
                     </Link>
                     {(rol === "encargado de sistemas") && (
-                            <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
-                                Usuarios
-                            </Link>
-                        )}
-                    <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
-                        Almacenes
-                    </Link>
+                        <Link to="/usuarios" className={`nav-link text-white ${isActive('/usuarios')}`}>
+                            Usuarios
+                        </Link>
+                    )}
+                    {(rol === "encargado archivos y ujier" || "encargado activos fijos y almacen") && (
+                        <Link to="/almacenes" className={`nav-link text-white ${isActive('/almacenes')}`}>
+                            Almacenes
+                        </Link>
+                    )}
                     <Link to="/material" className={`nav-link text-white ${isActive('/material')}`}>
                         Material
                     </Link>
@@ -118,7 +122,7 @@ function NavbarComponent() {
                     </Link>
                 </div>
 
-                <main className="flex-1 p-2 sm:p-2 lg:p-1" style={{ backgroundColor: '#b1c2dfff' }}>
+                <main className="flex-1 p-2 sm:p-2 lg:p-1" style={{ backgroundColor: '#c2c2c2ff' }}>
                     <TabsComponent />
                 </main>
             </div>
