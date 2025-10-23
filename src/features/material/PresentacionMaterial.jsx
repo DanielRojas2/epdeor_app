@@ -1,18 +1,18 @@
 import { useContext, useEffect } from "react";
-import { MaterialContext } from "../../contexts/material.context";
+import { MaterialContext } from "../../contexts/material_contexts/material.context";
 
 function PresentacionMaterial() {
-    const { material, getMaterial, error } = useContext(MaterialContext);
+    const { presentacionMaterial, getPresentacionMaterial, error } = useContext(MaterialContext);
 
     useEffect(() => {
-        getMaterial();
+        getPresentacionMaterial();
     }, []);
 
     if (error) {
         return <p className="text-red-500">Error al obtener material</p>;
     };
 
-    if (!material || material.length === 0) {
+    if (!presentacionMaterial || presentacionMaterial.length === 0) {
         return <p className="text-gray-500">Cargando información...</p>;
     };
 
@@ -28,26 +28,28 @@ function PresentacionMaterial() {
                     </div>
                     <button
                         className="hidden md:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-gray-800 text-black dark:text-white text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
-                        <span className="material-symbols-outlined">add</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
                         <span className="truncate">Mis solicitudes</span>
                     </button>
                 </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {material.map((materiales) => (
-                    <div className="flex flex-col bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800" key={materiales.id}>
+                {presentacionMaterial.map((material) => (
+                    <div className="flex flex-col bg-white dark:bg-background-dark/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800" key={material.id}>
                         <div className="p-2 flex-grow">
                             <span style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", textAlign: "center" }}>
                                 <h2 className="text-2xl font-bold text-[#0d141b] dark:white-slate-50 leading-tight">
-                                    {materiales.descripcion}
+                                    {material.descripcion}
                                 </h2>
-                                {materiales.partida.partida}
+                                {material.partida.partida}
                             </span>
                             <p className="text-base font-medium text-slate-600 dark:text-slate-400 mt-2">
-                                <strong>Presentación:</strong> <i>{materiales.presentacion.presentacion}</i>
+                                <strong>Presentación:</strong> <i>{material.presentacion.presentacion}</i>
                             </p>
                             <p className="text-base font-medium text-slate-600 dark:text-slate-400 mt-2">
-                                <strong>UdM:</strong> <i>{materiales.unidad_de_medida.unidad_de_medida}</i>
+                                <strong>UdM:</strong> <i>{material.unidad_de_medida.unidad_de_medida}</i>
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row justify-start gap-3 px-3 py-2 border-t border-slate-200 dark:border-slate-800">

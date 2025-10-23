@@ -40,11 +40,6 @@ export const tabsConfig = {
     ],
     "/material": [
         {
-            id: "material",
-            label: "Material",
-            content: <PresentacionMaterial />
-        },
-        {
             id: "general",
             label: "General",
             content: <ReporteGeneralMaterial />,
@@ -55,6 +50,11 @@ export const tabsConfig = {
             label: "Inventario",
             content: <div>Contenido de Inventario</div>,
             roles: ['encargado activos fijos y almacen']
+        },
+        {
+            id: "material",
+            label: "Material",
+            content: <PresentacionMaterial />
         },
         {
             id: "solicitudes",
