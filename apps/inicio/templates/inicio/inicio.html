@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/custom/card-custom.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'navbar/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <section class="container py-5">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                <div class="card custom-card p-4 text-start w-100 h-100">
+                    <div class="custom-icon text-center mb-3">
+                        <i class="fa-solid fa-house fa-2x"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-3">Menú Inicio</h5>
+                    <p class="text-secondary mb-4">
+                        Explora las opciones que tenemos preparadas. <br>
+                        Solicita Archivos y Material. <br>
+                        Administra y Gestiona los almacenes de material y archivos.
+                    </p>
+                    <a href="#" class="custom-link">
+                        Ver más <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                <div class="card custom-card p-4 text-start w-100 h-100">
+                    <div class="custom-icon text-center mb-3">
+                        <i class="fa-solid fa-boxes-packing fa-2x"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-3">Materiales</h5>
+                    <p class="text-secondary mb-4">
+                        Explora y elige material. <br>
+                        Solicita tu material. <br><br>
+                        Administra y Gestiona los almacenes de material y archivos.
+                    </p>
+                    <a href="#" class="custom-link">
+                        Ver más <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                <div class="card custom-card p-4 text-start w-100 h-100">
+                    <div class="custom-icon text-center mb-3">
+                        <i class="fa-solid fa-file fa-2x"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-3">Archivos</h5>
+                    <p class="text-secondary mb-4">
+                        Explora las opciones que tenemos preparadas. <br>
+                        Solicita Archivos y Material. <br>
+                        Administra y Gestiona los almacenes de material y archivos.
+                    </p>
+                    <a href="#" class="custom-link">
+                        Ver más <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-center mt-1">
+            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                <div class="card custom-card p-4 text-start w-100 h-100">
+                    <div class="custom-icon text-center mb-3">
+                        <i class="fa-solid fa-users fa-2x"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-3">Usuarios</h5>
+                    <p class="text-secondary mb-4">
+                        Explora las opciones que tenemos preparadas. <br>
+                        Solicita Archivos y Material. <br>
+                        Administra y Gestiona los almacenes de material y archivos.
+                    </p>
+                    <a href="#" class="custom-link">
+                        Ver más <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                <div class="card custom-card p-4 text-start w-100 h-100">
+                    <div class="custom-icon text-center mb-3">
+                        <i class="fa-solid fa-warehouse fa-2x"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-3">Almacenes</h5>
+                    <p class="text-secondary mb-4">
+                        Explora las opciones que tenemos preparadas. <br>
+                        Solicita Archivos y Material. <br>
+                        Administra y Gestiona los almacenes de material y archivos.
+                    </p>
+                    <a href="{% url 'almacenes' %}" class="custom-link">
+                        Ver más <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
