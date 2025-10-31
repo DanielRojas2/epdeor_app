@@ -17,7 +17,6 @@
                 <span>{{ almacen.ubicacion|truncatewords:15 }}</span>
                 <span>{{ almacen.estado_almacen }}</span>
             </p>
-            {{ almacen.estado_almacen }}
             <ul class="list-unstyled small text-muted mb-4">
                 <li>
                     <a href="{% url 'almacen_update' almacen.id %}" class="btn-edit">
@@ -37,6 +36,7 @@
             <div class="d-flex justify-content-center align-items-center border-top pt-3">
                 <a href="{% url 'almacen_detalle' almacen.id %}" class="btn btn-outline-danger btn-sm rounded-pill px-3">Ver más</a>
             </div>
+            <meter value="75" min="0" max="100"></meter>
         </div>
     </div>
 {% empty %}
